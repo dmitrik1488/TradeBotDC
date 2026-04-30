@@ -558,7 +558,6 @@ async def cancel_trade_admin(interaction: discord.Interaction):
     await cleanup_trade(trade_id)
     await interaction.channel.send("Trade has been cancelled by an admin. This channel is now closed.")
 
-
 # ─────────────────────────────────────────────
 # READY
 # ─────────────────────────────────────────────
@@ -576,19 +575,5 @@ async def on_ready():
         print(f"Failed to sync commands: {e}")
 
 
-import threading
-from http.server import HTTPServer, BaseHTTPRequestHandler
-
-class Handler(BaseHTTPRequestHandler):
-    def do_GET(self):
-        self.send_response(200)
-        self.end_headers()
-        self.wfile.write(b"OK")
-    def log_message(self, *args):
-        pass
-
-def run_server():
-    HTTPServer(("0.0.0.0", 10000), Handler).serve_forever()
-
-threading.Thread(target=run_server, daemon=True).start()
 bot.run(TOKEN)
+
